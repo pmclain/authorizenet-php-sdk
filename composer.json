@@ -1,0 +1,22 @@
+{
+  "name": "pmclain/authorizenet-php-sdk",
+  "description": "Authorize.net Library with minimal dependencies.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Patrick McLain",
+      "email": "pat@pmclain.com"
+    }
+  ],
+  "require": {},
+  "require-dev": {
+    "phpunit/phpunit": "~6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pmclain\\Authnet\\": "src/",
+      "Pmclain\\Authnet\\Test\\": "test/"
+    }
+  }
+}
