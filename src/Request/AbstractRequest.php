@@ -60,7 +60,7 @@ abstract class AbstractRequest
 
     /**
      * @param array $request
-     * @return mixed
+     * @return array|null
      */
     protected function postRequest(array $request)
     {
@@ -79,7 +79,7 @@ abstract class AbstractRequest
         $result = curl_exec($ch);
         curl_close($ch);
 
-        return $this->removeUtf8Bom($result);
+        return json_decode($this->removeUtf8Bom($result), true);
     }
 
     /**

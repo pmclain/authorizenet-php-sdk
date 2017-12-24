@@ -31,7 +31,7 @@ class DeleteCustomerProfile extends AbstractRequest
     }
 
     /**
-     * @return string
+     * @return array|null
      */
     public function submit()
     {

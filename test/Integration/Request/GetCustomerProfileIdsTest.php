@@ -19,8 +19,7 @@ class GetCustomerProfileIdsTest extends TestCase
 
         $request->setMerchantAuthentication($merchantAuth);
 
-        $result = json_decode($request->submit(), true);
-
+        $result = $request->submit();
         $this->assertTrue(isset($result['ids']));
     }
 }

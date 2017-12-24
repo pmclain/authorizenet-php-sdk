@@ -56,7 +56,7 @@ class CreateCustomerProfileTest extends TestCase
         $customerProfile->setEmail(sprintf('user_%s@example.com', (string)mt_rand()));
         $request->setProfile($customerProfile);
 
-        $result = json_decode($request->submit(), true);
+        $result = $request->submit();
         $this->assertTrue(isset($result['customerProfileId']));
 
         $this->profileId = $result['customerProfileId'];

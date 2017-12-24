@@ -16,7 +16,7 @@ class CreateTransaction extends AbstractRequest
     private $transactionRequest;
 
     /**
-     * @return string
+     * @return array|null
      */
     public function submit()
     {

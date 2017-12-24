@@ -7,7 +7,7 @@ class GetCustomerProfileIds extends AbstractRequest
     const REQUEST_NAME = 'getCustomerProfileIdsRequest';
 
     /**
-     * @return string
+     * @return array|null
      */
     public function getRequestName()
     {

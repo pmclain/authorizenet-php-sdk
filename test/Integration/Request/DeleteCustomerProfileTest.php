@@ -34,7 +34,7 @@ class DeleteCustomerProfileTest extends TestCase
         $customerProfile->setEmail(sprintf('user_%s@example.com', (string)mt_rand()));
         $createCustomerRequest->setProfile($customerProfile);
 
-        $result = json_decode($createCustomerRequest->submit(), true);
+        $result = $createCustomerRequest->submit();
         $this->profileId = $result['customerProfileId'];
     }
 
@@ -44,7 +44,7 @@ class DeleteCustomerProfileTest extends TestCase
         $request->setMerchantAuthentication($this->merchantAuth);
         $request->setCustomerProfileId($this->profileId);
 
-        $result = json_decode($request->submit(), true);
+        $result = $request->submit();
         $this->assertEquals('Ok', $result['messages']['resultCode']);
     }
 }

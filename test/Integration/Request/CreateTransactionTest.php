@@ -64,7 +64,7 @@ class CreateTransactionTest extends TestCase
 
         $this->request->setTransactionRequest($transaction);
 
-        $result = json_decode($this->request->submit(), true);
+        $result = $this->request->submit();
         $this->assertEquals('Ok', $result['messages']['resultCode']);
     }
 
@@ -87,7 +87,7 @@ class CreateTransactionTest extends TestCase
 
         $this->request->setTransactionRequest($transaction);
 
-        $result = json_decode($this->request->submit(), true);
+        $result = $this->request->submit();
         $this->assertEquals('Ok', $result['messages']['resultCode']);
         $this->assertTrue(isset($result['profileResponse']['customerProfileId']));
 
