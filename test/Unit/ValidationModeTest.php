@@ -16,7 +16,7 @@ class ValidationModeTest extends TestCase
     }
 
     /**
-     * @covers \Pmclain\Authnet\PaymentProfile\ValidationMode::set()
+     * @covers \Pmclain\Authnet\ValidationMode::set
      * @expectedException \Pmclain\Authnet\Exception\InputException
      */
     public function testSetException()
