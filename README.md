@@ -1,5 +1,6 @@
 # Zero-Dependency PHP-SDK For Authorize.net
-
+[![Build Status](https://travis-ci.org/pmclain/authorizenet-php-sdk.svg?branch=master)](https://travis-ci.org/pmclain/authorizenet-php-sdk)
+  
 The office Authorize.net SDK contains dependencies that conflict with Magento 2.
 This implementation provides an object oriented interface for creating
 Authorize.net requests without any dependencies.
