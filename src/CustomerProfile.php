@@ -75,6 +75,9 @@ class CustomerProfile
     public function toArray()
     {
         $result = [];
+        if (isset($this->merchantCustomerId)) {
+            $result[self::FIELD_CUSTOMER_ID] = $this->merchantCustomerId;
+        }
         if (isset($this->email)) {
             $result[self::FIELD_EMAIL] = $this->email;
         }
