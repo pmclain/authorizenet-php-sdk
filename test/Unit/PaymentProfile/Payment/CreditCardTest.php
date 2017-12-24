@@ -22,6 +22,13 @@ class CreditCardTest extends TestCase
         $this->assertEquals($expected, $creditCard->toArray());
     }
 
+    public function testGetKey()
+    {
+        $creditCard = new CreditCard();
+
+        $this->assertEquals(CreditCard::KEY, $creditCard->getKey());
+    }
+
     /**
      * @expectedException \Pmclain\Authnet\Exception\CardInformationException
      */

@@ -23,6 +23,13 @@ class OpaqueDataTest extends TestCase
         $this->assertEquals($expected, $opaqueData->toArray());
     }
 
+    public function testGetKey()
+    {
+        $opaqueData = new OpaqueData();
+
+        $this->assertEquals(OpaqueData::KEY, $opaqueData->getKey());
+    }
+
     /**
      * @expectedException \Pmclain\Authnet\Exception\OpaqueDataInformationException
      */
