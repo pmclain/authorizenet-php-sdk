@@ -11,6 +11,7 @@ class PaymentProfile
     const FIELD_CUSTOMER_TYPE = 'customerType';
     const FIELD_BILL_TO = 'billTo';
     const FIELD_PAYMENT = 'payment';
+    const FIELD_DEFAULT_PAYMENT_PROFILE = 'defaultPaymentProfile';
 
     /**
      * @var string
@@ -26,6 +27,11 @@ class PaymentProfile
      * @var PaymentInterface
      */
     private $payment;
+
+    /**
+     * @var bool
+     */
+    private $defaultPaymentProfile = false;
 
     /**
      * @param string $type
@@ -58,10 +64,21 @@ class PaymentProfile
         return $this;
     }
 
+    /**
+     * @param bool $makeDefault
+     * @return $this
+     */
+    public function setDefaultPaymentProfile(bool $makeDefault)
+    {
+        $this->defaultPaymentProfile = $makeDefault;
+        return $this;
+    }
+
     public function toArray()
     {
         $result = [];
         $result[self::FIELD_CUSTOMER_TYPE] = $this->getCustomerType();
+        $result[self::FIELD_DEFAULT_PAYMENT_PROFILE] = $this->defaultPaymentProfile;
         if (isset($this->billTo)) {
             $result[self::FIELD_BILL_TO] = $this->billTo->toArray();
         }
