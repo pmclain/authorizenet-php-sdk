@@ -17,6 +17,9 @@ class TransactionRequest
     const FIELD_REF_TRANS_ID = 'refTransId';
     const FIELD_PAYMENT = 'payment';
     const FIELD_PROFILE = 'profile';
+    const FIELD_CUSTOMER_PROFILE_ID = 'customerProfileId';
+    const FIELD_PAYMENT_PROFILE = 'paymentProfile';
+    const FIELD_PAYMENT_PROFILE_ID = 'paymentProfileId';
     const FIELD_CREATE_PROFILE = 'createProfile';
     const FIELD_SOLUTION = 'solution';
     const FIELD_SOLUTION_ID = 'id';
@@ -47,6 +50,16 @@ class TransactionRequest
      * @var PaymentInterface
      */
     private $payment;
+
+    /**
+     * @var string|int
+     */
+    private $customerProfileId;
+
+    /**
+     * @var string|int
+     */
+    private $paymentProfileId;
 
     /**
      * @var bool
@@ -156,6 +169,26 @@ class TransactionRequest
     public function setPayment(PaymentInterface $payment)
     {
         $this->payment = $payment;
+        return $this;
+    }
+
+    /**
+     * @param string|int $customerProfileId
+     * @return $this
+     */
+    public function setCustomerProfileId($customerProfileId)
+    {
+        $this->customerProfileId = $customerProfileId;
+        return $this;
+    }
+
+    /**
+     * @param string|int $paymentProfileId
+     * @return $this
+     */
+    public function setPaymentProfileId($paymentProfileId)
+    {
+        $this->paymentProfileId = $paymentProfileId;
         return $this;
     }
 
@@ -302,7 +335,15 @@ class TransactionRequest
         if (isset($this->payment)) {
             $body[self::FIELD_PAYMENT][$this->payment->getKey()] = $this->payment->toArray();
         }
-        $body[self::FIELD_PROFILE][self::FIELD_CREATE_PROFILE] = $this->createProfile;
+        if (isset($this->customerProfileId)) {
+            $body[self::FIELD_PROFILE][self::FIELD_CUSTOMER_PROFILE_ID] = $this->customerProfileId;
+        }
+        if (isset($this->paymentProfileId)) {
+            $body[self::FIELD_PROFILE][self::FIELD_PAYMENT_PROFILE][self::FIELD_PAYMENT_PROFILE_ID] = $this->paymentProfileId;
+        }
+        if ($this->createProfile) {
+            $body[self::FIELD_PROFILE][self::FIELD_CREATE_PROFILE] = $this->createProfile;
+        }
         if (isset($this->solutionId)) {
             $body[self::FIELD_SOLUTION][self::FIELD_SOLUTION_ID] = $this->solutionId;
         }
