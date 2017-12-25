@@ -63,7 +63,7 @@ class CreateCustomerProfile extends AbstractRequest
             $body[self::FIELD_REF_ID] = $this->refId;
         }
         $body[self::FIELD_PROFILE] = $this->profile->toArray();
-        if (isset($this->validationMode)) {
+        if (isset($this->validationMode) && $this->validationMode->get()) {
             $body[self::FIELD_VALIDATION_MODE] = $this->validationMode->get();
         }
 
