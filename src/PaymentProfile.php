@@ -78,13 +78,13 @@ class PaymentProfile
     {
         $result = [];
         $result[self::FIELD_CUSTOMER_TYPE] = $this->getCustomerType();
-        $result[self::FIELD_DEFAULT_PAYMENT_PROFILE] = $this->defaultPaymentProfile;
         if (isset($this->billTo)) {
             $result[self::FIELD_BILL_TO] = $this->billTo->toArray();
         }
         if (isset($this->payment)) {
             $result[self::FIELD_PAYMENT][$this->payment->getKey()] = $this->payment->toArray();
         }
+        $result[self::FIELD_DEFAULT_PAYMENT_PROFILE] = $this->defaultPaymentProfile;
 
         return $result;
     }

@@ -2,12 +2,16 @@
 
 namespace Pmclain\Authnet;
 
+use Pmclain\Authnet\PaymentProfile\Address;
+use Pmclain\Authnet\PaymentProfile\Payment\PaymentInterface;
+
 class CustomerProfile
 {
     const FIELD_CUSTOMER_ID = 'merchantCustomerId';
     const FIELD_DESCRIPTION = 'description';
     const FIELD_EMAIL = 'email';
     const FIELD_PAYMENT_PROFILES = 'paymentProfiles';
+    const FIELD_SHIP_TO_LIST = 'shipToList';
 
     /**
      * @var string
@@ -28,6 +32,11 @@ class CustomerProfile
      * @var PaymentProfile
      */
     private $paymentProfile;
+
+    /**
+     * @var Address[]
+     */
+    private $shipToList;
 
     /**
      * @param string $merchantCustomerId
@@ -70,6 +79,16 @@ class CustomerProfile
     }
 
     /**
+     * @param Address $address
+     * @return $this
+     */
+    public function addShipTo(Address $address)
+    {
+        $this->shipToList[] = $address->toArray();
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray()
@@ -78,14 +97,17 @@ class CustomerProfile
         if (isset($this->merchantCustomerId)) {
             $result[self::FIELD_CUSTOMER_ID] = $this->merchantCustomerId;
         }
-        if (isset($this->email)) {
-            $result[self::FIELD_EMAIL] = $this->email;
-        }
         if (isset($this->description)) {
             $result[self::FIELD_DESCRIPTION] = $this->description;
         }
+        if (isset($this->email)) {
+            $result[self::FIELD_EMAIL] = $this->email;
+        }
         if (isset($this->paymentProfile)) {
             $result[self::FIELD_PAYMENT_PROFILES] = $this->paymentProfile->toArray();
+        }
+        if (count($this->shipToList)) {
+            $result[self::FIELD_SHIP_TO_LIST] = $this->shipToList;
         }
 
         return $result;

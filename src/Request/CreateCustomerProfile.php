@@ -10,18 +10,12 @@ class CreateCustomerProfile extends AbstractRequest
 {
     const REQUEST_NAME = 'createCustomerProfileRequest';
     const FIELD_PROFILE = 'profile';
-    const FIELD_SHIP_TO_LIST = 'shipToList';
     const FIELD_VALIDATION_MODE = 'validationMode';
 
     /**
      * @var CustomerProfile
      */
     private $profile;
-
-    /**
-     * @var Address
-     */
-    private $shipTo;
 
     /**
      * @var ValidationMode
@@ -49,16 +43,6 @@ class CreateCustomerProfile extends AbstractRequest
     }
 
     /**
-     * @param Address $shipTo
-     * @return $this
-     */
-    public function setShipTo(Address $shipTo)
-    {
-        $this->shipTo = $shipTo;
-        return $this;
-    }
-
-    /**
      * @param ValidationMode $mode
      * @return $this
      */
@@ -79,9 +63,6 @@ class CreateCustomerProfile extends AbstractRequest
             $body[self::FIELD_REF_ID] = $this->refId;
         }
         $body[self::FIELD_PROFILE] = $this->profile->toArray();
-        if (isset($this->shipTo)) {
-            $body[self::FIELD_SHIP_TO_LIST] = $this->shipTo->toArray();
-        }
         if (isset($this->validationMode)) {
             $body[self::FIELD_VALIDATION_MODE] = $this->validationMode->get();
         }
