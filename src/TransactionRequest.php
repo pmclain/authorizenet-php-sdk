@@ -329,11 +329,11 @@ class TransactionRequest
         if (isset($this->amount)) {
             $body[self::FIELD_AMOUNT] = $this->amount;
         }
-        if (isset($this->refTransId)) {
-            $body[self::FIELD_REF_TRANS_ID] = $this->refTransId;
-        }
         if (isset($this->payment)) {
             $body[self::FIELD_PAYMENT][$this->payment->getKey()] = $this->payment->toArray();
+        }
+        if (isset($this->refTransId)) {
+            $body[self::FIELD_REF_TRANS_ID] = $this->refTransId;
         }
         if (isset($this->customerProfileId)) {
             $body[self::FIELD_PROFILE][self::FIELD_CUSTOMER_PROFILE_ID] = $this->customerProfileId;
