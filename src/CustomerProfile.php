@@ -106,7 +106,7 @@ class CustomerProfile
         if (isset($this->paymentProfile)) {
             $result[self::FIELD_PAYMENT_PROFILES] = $this->paymentProfile->toArray();
         }
-        if (count($this->shipToList)) {
+        if ($this->shipToList && count($this->shipToList)) {
             $result[self::FIELD_SHIP_TO_LIST] = $this->shipToList;
         }
 
