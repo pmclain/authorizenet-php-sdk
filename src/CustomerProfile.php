@@ -12,6 +12,7 @@ class CustomerProfile
     const FIELD_EMAIL = 'email';
     const FIELD_PAYMENT_PROFILES = 'paymentProfiles';
     const FIELD_SHIP_TO_LIST = 'shipToList';
+    const FIELD_PROFILE_TYPE = 'profileType';
 
     /**
      * @var string
@@ -37,6 +38,11 @@ class CustomerProfile
      * @var Address[]
      */
     private $shipToList;
+
+    /**
+     * @var string
+     */
+    private $profileType;
 
     /**
      * @param string $merchantCustomerId
@@ -89,6 +95,16 @@ class CustomerProfile
     }
 
     /**
+     * @param string $profileType
+     * @return $this
+     */
+    public function setProfileType($profileType)
+    {
+        $this->profileType = $profileType;
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray()
@@ -108,6 +124,10 @@ class CustomerProfile
         }
         if ($this->shipToList && count($this->shipToList)) {
             $result[self::FIELD_SHIP_TO_LIST] = $this->shipToList;
+        }
+
+        if (isset($this->profileType)) {
+            $result[self::FIELD_PROFILE_TYPE] = $this->profileType;
         }
 
         return $result;
